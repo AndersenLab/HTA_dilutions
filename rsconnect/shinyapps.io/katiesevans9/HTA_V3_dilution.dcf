@@ -5,9 +5,9 @@ account: katiesevans9
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 1264796
-bundleId: 3417466
+bundleId: 3418903
 url: https://katiesevans9.shinyapps.io/HTA_V3_dilution/
-when: 1595346521.8235
+when: 1595371705.77767
 asMultiple: FALSE
 asStatic: FALSE
-ignoredFiles: archive.R|test_serial_dilutions.R|images/drug_dilution.png|images/drug_setup.png|images/setup.png
+ignoredFiles: archive.R|README.md|test_serial_dilutions.R|images/drug_dilution.png|images/drug_setup.png|images/setup.png
