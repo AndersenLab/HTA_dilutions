@@ -12,13 +12,17 @@ glue::glue("Version: {version}")
 cat('\n')
 glue::glue("Food: {food}")
 cat('\n')
-glue::glue("Dose response: {dose}")
+if(serialdose == T) {
+    glue::glue("Dose response: SERIAL")
+} else {
+    glue::glue("Dose response: {dose}")
+}
 cat('\n')
 glue::glue("Minimum amount to pipette: {min}")
 cat('\n')
 glue::glue("Number of drugs: {drugs}")
 cat('\n')
-if(dose == T) {
+if(dose == T | serialdose == T) {
     drug_inputs <- data.frame(drug = NA, drugstock = NA, diluent = NA, drugdose = NA, drugplates = NA, wells = NA)
     for(d in 1:drugs) {
         drug_inputs <- rbind(drug_inputs, c(get(glue::glue("drug_name{d}")),
@@ -31,7 +35,20 @@ if(dose == T) {
     drug_inputs <- drug_inputs %>%
         na.omit() %>%
         dplyr::select(Drug = drug, `Stock Conc. (mM)` = drugstock, Diluent = diluent, `Drug Dose (uM)` = drugdose, `Drug Plates` = drugplates, Wells = wells)
-} else {
+# } #else if(serialdose == T) {
+    # drug_inputs <- data.frame(drug = NA, drugstock = NA, diluent = NA, drugdose = NA, drugplates = NA, wells = NA)
+    # for(d in 1:drugs) {
+    #     drug_inputs <- rbind(drug_inputs, c(get(glue::glue("drug_name{d}")),
+    #                          get(glue::glue("drug_stock{d}")),
+    #                          get(glue::glue("control_name{d}")),
+    #                          get(glue::glue("drug_dose{d}")),
+    #                          get(glue::glue("drugplates{d}")),
+    #                          get(glue::glue("wells{d}"))))
+    # }
+    # drug_inputs <- drug_inputs %>%
+    #     na.omit() %>%
+    #     dplyr::select(Drug = drug, `Stock Conc. (mM)` = drugstock, Diluent = diluent, `Drug Dose (uM)` = drugdose, `Drug Plates` = drugplates, Wells = wells)
+}else {
     drug_inputs <- data.frame(drug = NA, drugstock = NA, diluent = NA, drugdose = NA, drugplates = NA, controlplates = NA, wells = NA)
     for(d in 1:drugs) {
         drug_inputs <- rbind(drug_inputs, c(get(glue::glue("drug_name{d}")),
@@ -93,7 +110,7 @@ if(version == "v2") {
     print("Add 25 uL food + drug to wells with 50 uL worms.")
 }
 
-if(dose == T) {
+if(dose == T | serialdose == T) {
     for(d in 1:drugs) {
         table <- dosetable[[1]] %>%
             dplyr::mutate(Condition = as.character(Condition)) %>%
