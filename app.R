@@ -578,8 +578,8 @@ server <- function(input, output, session) {
                                                    collapse = ",")) %>%
                     tidyr::separate_rows(wellconc, sep = ",") %>%
                     dplyr::mutate(version = as.character(version),
-                                  workingconc = as.numeric(ifelse(version == "v2", wellconc, wellconc*3)),
                                   wellconc = as.numeric(wellconc),
+                                  workingconc = as.numeric(ifelse(version == "v2", wellconc, wellconc*3)),
                                   total_volume = ifelse(version == "v2", 
                                                         drugplates*wells*50*1.1,
                                                         drugplates*wells*25*1.1),
