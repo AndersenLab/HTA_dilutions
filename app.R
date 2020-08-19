@@ -574,7 +574,7 @@ server <- function(input, output, session) {
                 
                 # change int conc
                 dose <- df %>%
-                    dplyr::mutate(wellconc = paste(c(sapply(1:(df$numconcs-2), function(x) {as.numeric(as.character(df$highconc))*as.numeric(df$DF)^(-x)}), 0, df$highconc),
+                    dplyr::mutate(wellconc = paste(c(sapply(1:(df$numconcs-2), function(x) {as.numeric(as.character(df$highconc))*as.numeric(df$DF)^(-x)}), 0, as.numeric(as.character(df$highconc))),
                                                    collapse = ",")) %>%
                     tidyr::separate_rows(wellconc, sep = ",") %>%
                     dplyr::mutate(version = as.character(version),
