@@ -1,0 +1,13 @@
+name: HTA_dilutions
+title: HTA_dilutions
+username:
+account: andersen-lab
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 3347120
+bundleId: 3939353
+url: https://andersen-lab.shinyapps.io/HTA_dilutions/
+when: 1607020528.03174
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: archive.R|test_serial_dilutions.R|images/drug_dilution.png|images/drug_setup.png|images/setup.png
